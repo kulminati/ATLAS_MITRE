@@ -290,3 +290,74 @@ export interface ExecutiveReport {
   osint_coverage: OsintCoverage;
   osint_highlights: OsintHighlights;
 }
+
+// ── Deep-Dive Types ────────────────────────────────────────────────
+
+export interface LabTool {
+  name: string;
+  url: string;
+  description: string;
+}
+
+export interface DeepDiveResponse {
+  technique_id: string;
+  how_it_works: string;
+  code_example: string;
+  defense_strategies: string;
+  lab_tools: LabTool[];
+  difficulty: string;
+  prerequisites: string[];
+}
+
+// ── Detection Exercise Types ────────────────────────────────────────
+
+export interface ExerciseLogSample {
+  log_entry: string;
+  is_malicious: boolean;
+  explanation: string;
+}
+
+export interface ExerciseSolution {
+  detection_logic: string;
+  logscale_query: string;
+  explanation: string;
+}
+
+export interface ExerciseSummary {
+  id: string;
+  title: string;
+  difficulty: "beginner" | "intermediate" | "advanced";
+  technique_ids: string[];
+}
+
+export interface ExerciseDetail {
+  id: string;
+  title: string;
+  difficulty: "beginner" | "intermediate" | "advanced";
+  technique_ids: string[];
+  scenario: string;
+  log_samples: ExerciseLogSample[];
+  hints: string[];
+  solution: ExerciseSolution;
+  false_positive_notes: string;
+}
+
+// ── Learning Path Types ─────────────────────────────────────────────
+
+export interface LearningModule {
+  title: string;
+  description: string;
+  type: "read" | "exercise" | "explore" | "activity";
+  link: string;
+  techniqueId?: string;
+  keyConcepts: string[];
+}
+
+export interface LearningPath {
+  id: string;
+  title: string;
+  difficulty: "beginner" | "intermediate" | "advanced" | "beginner-intermediate";
+  description: string;
+  estimatedTime: string;
+  modules: LearningModule[];
+}

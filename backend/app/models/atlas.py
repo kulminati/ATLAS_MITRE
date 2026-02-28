@@ -260,3 +260,56 @@ class ExecutiveReport(BaseModel):
     attack_category_distribution: dict[str, int]
     osint_coverage: OsintCoverage
     osint_highlights: OsintHighlights
+
+
+# ── Deep-Dive Models ────────────────────────────────────────────────
+
+
+class LabTool(BaseModel):
+    name: str
+    url: str
+    description: str
+
+
+class DeepDiveResponse(BaseModel):
+    technique_id: str
+    how_it_works: str
+    code_example: str
+    defense_strategies: str
+    lab_tools: list[LabTool]
+    difficulty: str
+    prerequisites: list[str]
+
+
+# ── Detection Exercise Models ────────────────────────────────────────
+
+
+class ExerciseLogSample(BaseModel):
+    log_entry: str
+    is_malicious: bool
+    explanation: str
+
+
+class ExerciseSolution(BaseModel):
+    detection_logic: str
+    logscale_query: str
+    explanation: str
+
+
+class ExerciseSummary(BaseModel):
+    id: str
+    title: str
+    difficulty: str
+    technique_ids: list[str]
+
+
+class ExerciseDetail(BaseModel):
+    id: str
+    title: str
+    difficulty: str
+    technique_ids: list[str]
+    scenario: str
+    log_samples: list[ExerciseLogSample]
+    hints: list[str]
+    solution: ExerciseSolution
+    false_positive_notes: str

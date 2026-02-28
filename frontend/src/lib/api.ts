@@ -13,6 +13,9 @@ import type {
   SearchResponse,
   TechniqueGraph,
   ExecutiveReport,
+  ExerciseSummary,
+  ExerciseDetail,
+  DeepDiveResponse,
 } from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -65,4 +68,8 @@ export const api = {
     fetch(`${API_URL}/api/killchains/seed`, { method: "POST" }).then((r) => r.json()),
   getTechniqueGraph: () => fetchApi<TechniqueGraph>("/api/techniques/graph"),
   getExecutiveReport: () => fetchApi<ExecutiveReport>("/api/reports/executive"),
+  getExercises: () => fetchApi<ExerciseSummary[]>("/api/exercises"),
+  getExercise: (id: string) => fetchApi<ExerciseDetail>(`/api/exercises/${id}`),
+  getDeepDive: (techniqueId: string) =>
+    fetchApi<DeepDiveResponse>(`/api/techniques/${techniqueId}/deepdive`),
 };

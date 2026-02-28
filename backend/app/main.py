@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import get_db
-from app.routers import case_studies, killchains, matrix, osint, reports, sync, techniques
+from app.routers import case_studies, deepdives, exercises, killchains, matrix, osint, reports, sync, techniques
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +29,8 @@ app.include_router(sync.router, prefix="/api")
 app.include_router(osint.router, prefix="/api")
 app.include_router(killchains.router, prefix="/api")
 app.include_router(reports.router, prefix="/api")
+app.include_router(exercises.router, prefix="/api")
+app.include_router(deepdives.router, prefix="/api")
 
 
 @app.on_event("startup")

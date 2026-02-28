@@ -20,7 +20,9 @@ ATLAS_MITRE/
 │   │   │   ├── osint.py        # /api/osint/{technique_id}
 │   │   │   ├── killchains.py   # /api/killchains, /api/killchains/{id}/export
 │   │   │   ├── reports.py      # /api/reports/executive
-│   │   │   └── sync.py         # /api/sync, /api/sync/status
+│   │   │   ├── sync.py         # /api/sync, /api/sync/status
+│   │   │   ├── deepdives.py   # /api/techniques/{id}/deepdive
+│   │   │   └── exercises.py   # /api/exercises, /api/exercises/{id}
 │   │   └── services/     # Business logic
 │   │       ├── ingestion.py     # ATLAS YAML fetch & DB insert
 │   │       ├── killchain_service.py # Killchain builder & React Flow diagram gen
@@ -28,7 +30,9 @@ ATLAS_MITRE/
 │   │       ├── osint.py         # OSINT orchestrator (asyncio.gather)
 │   │       ├── github_search.py # GitHub API search (6hr cache)
 │   │       ├── arxiv_search.py  # arXiv API search (24hr cache)
-│   │       └── nvd_search.py    # NVD CVE search (12hr cache)
+│   │       ├── nvd_search.py    # NVD CVE search (12hr cache)
+│   │       ├── deepdive_content.py # Deep-dive content for 15 techniques
+│   │       └── exercises.py     # 10 detection exercises with LogScale queries
 │   ├── data/
 │   │   └── atlas.db      # SQLite database (WAL mode)
 │   ├── scripts/
@@ -47,14 +51,19 @@ ATLAS_MITRE/
 │   │   │   ├── graph/page.tsx           # Technique relationship graph (D3)
 │   │   │   ├── compare/page.tsx         # NVIDIA vs ATLAS comparison
 │   │   │   ├── reports/page.tsx         # Executive report (printable)
-│   │   │   └── search/page.tsx          # Full-text search
+│   │   │   ├── search/page.tsx          # Full-text search
+│   │   │   ├── learn/page.tsx          # Learning paths curriculum
+│   │   │   ├── threat-model/page.tsx   # Interactive threat modeling wizard
+│   │   │   ├── exercises/page.tsx      # Detection exercise gallery
+│   │   │   └── exercises/[id]/page.tsx # Interactive exercise with LogScale
 │   │   ├── components/
 │   │   │   ├── matrix/
 │   │   │   │   ├── AtlasMatrix.tsx       # D3.js interactive SVG matrix
 │   │   │   │   ├── MatrixLegend.tsx      # Maturity filter buttons
 │   │   │   │   ├── TechniqueTooltip.tsx  # Hover tooltip
 │   │   │   │   ├── TechniqueDetailTabs.tsx # Tabbed detail view
-│   │   │   │   └── OsintPanel.tsx        # Live OSINT results panel
+│   │   │   │   ├── OsintPanel.tsx        # Live OSINT results panel
+│   │   │   │   └── DeepDivePanel.tsx    # Technical deep-dive content
 │   │   │   ├── killchain/
 │   │   │   │   ├── KillchainGallery.tsx  # Filterable gallery cards
 │   │   │   │   ├── KillchainFlow.tsx     # React Flow diagram
@@ -66,7 +75,9 @@ ATLAS_MITRE/
 │   │       ├── api.ts              # Typed API client (fetch-based)
 │   │       ├── colors.ts           # Tactic color map (16 colors)
 │   │       ├── utils.ts            # HTML stripping utility
-│   │       └── nvidia-killchain.ts # NVIDIA kill chain data + mappings
+│   │       ├── nvidia-killchain.ts # NVIDIA kill chain data + mappings
+│   │       ├── learning-paths.ts   # 5 curated learning path curricula
+│   │       └── threat-model-data.ts # AI system types, deployments, technique mappings
 │   └── package.json
 └── .env                  # ATLAS_DB_PATH, NEXT_PUBLIC_API_URL
 ```
@@ -133,3 +144,4 @@ cd backend && python3 -m scripts.ingest
 4. **Phase 4** (DONE): Killchain visualization with React Flow diagrams
 5. **Phase 5** (DONE): Polish - auto-sync, search UI, JSON export, NVIDIA Kill Chain comparison
 6. **Phase 6** (DONE): Executive report generation, technique relationship graph
+7. **Phase 7** (DONE): Learning features - technical deep-dives (15 techniques), interactive threat modeling wizard, detection exercises (10 with CrowdStrike LogScale queries), curated learning paths (5 curricula)

@@ -47,6 +47,12 @@ An interactive threat intelligence platform for the [MITRE ATLAS](https://atlas.
 - Export killchain and technique data as structured JSON
 - One-click download from detail pages
 
+### Learning Platform
+- **Technical Deep-Dives**: In-depth "Learn" tab on 15 key techniques with code examples, defense strategies, and lab tool links
+- **Interactive Threat Modeling**: 4-step wizard to assess AI system threats by system type, deployment model, and access level
+- **Detection Exercises**: 10 hands-on scenarios with CrowdStrike LogScale queries, log analysis, and progressive hints
+- **Curated Learning Paths**: 5 structured curricula (Fundamentals, LLM Security, Detection Engineering, Red Team, Leaders)
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -113,6 +119,10 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 | `/compare` | NVIDIA AI Kill Chain vs ATLAS comparison |
 | `/reports` | Executive threat intelligence report |
 | `/search` | Full-text search across techniques and case studies |
+| `/learn` | Curated learning paths with 5 structured curricula |
+| `/threat-model` | Interactive AI threat modeling wizard |
+| `/exercises` | Detection exercise gallery with difficulty filters |
+| `/exercises/[id]` | Interactive exercise with logs, hints, and LogScale solutions |
 
 ## API Endpoints
 
@@ -138,6 +148,9 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 | GET | `/api/search?q=` | Full-text search |
 | GET | `/api/sync/status` | Sync status and data freshness |
 | POST | `/api/sync` | Trigger ATLAS data sync |
+| GET | `/api/techniques/{id}/deepdive` | Technical deep-dive content |
+| GET | `/api/exercises` | All detection exercises |
+| GET | `/api/exercises/{id}` | Exercise detail with LogScale solution |
 | GET | `/api/health` | Health check |
 
 ## ATLAS Data Model

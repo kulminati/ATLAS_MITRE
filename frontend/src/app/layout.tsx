@@ -31,6 +31,12 @@ export default function RootLayout({
             </div>
             <nav className="flex items-center gap-6 text-sm">
               <a
+                href="/learn"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Learn
+              </a>
+              <a
                 href="/"
                 className="text-gray-300 hover:text-white transition-colors"
               >
@@ -53,6 +59,18 @@ export default function RootLayout({
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 Compare
+              </a>
+              <a
+                href="/threat-model"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Threat Model
+              </a>
+              <a
+                href="/exercises"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Exercises
               </a>
               <a
                 href="/reports"
